@@ -24,25 +24,25 @@ function randomColor() {
   switch (Math.floor(Math.random() * 7)) {
     case 0:
       //purple
-      return "rgba(194, 0, 255, .95)";
+      return "rgba(194, 0, 255, 1)";
     case 1:
       //blue
-      return "rgba(0, 198, 255, .95)";
+      return "rgba(0, 198, 255, 1)";
     case 2:
       //yellow
-      return "rgba(255, 239, 0, .95)";
+      return "rgba(255, 239, 0, 1)";
     case 3:
       //pink
-      return "rgba(255, 0, 182, .95)";
+      return "rgba(255, 0, 182, 1)";
     case 4:
       //teal
-      return "rgba(0, 255, 169, .95)";
+      return "rgba(0, 255, 169, 1)";
     case 5:
       //red
-      return "rgba(255, 0, 57, .95)";
+      return "rgba(255, 0, 57, 1)";
     case 6:
       //orange
-      return "rgba(255, 143, 0, .95)";
+      return "rgba(255, 143, 0, 1)";
   }
 }
 
@@ -56,7 +56,7 @@ const encodeImageToBlurhash = async (path) =>
         if (err) return reject(err);
         console.log(path);
         resolve(
-          encode(new Uint8ClampedArray(buffer), info.width, info.height, 5, 5)
+          encode(new Uint8ClampedArray(buffer), info.width, info.height, 4, 4)
         );
       });
   });
@@ -64,7 +64,7 @@ const encodeImageToBlurhash = async (path) =>
 async function getImg(path) {
   const Newpath = "./images/100-100-color/" + path + ".jpg";
   return {
-    uri: "http://192.168.1.72:8080/images/" + path,
+    uri: "http://10.201.84.63:8080/images/" + path,
     blur: await encodeImageToBlurhash(Newpath).then((hash) => {
       console.log(hash);
       return hash;
@@ -90,7 +90,7 @@ module.exports = async function () {
             name: randomName(),
             username: randomName(),
             pfp:
-              "http://192.168.1.72:8080/images/" +
+              "http://10.201.84.63:8080/images/" +
               Math.floor(Math.random() * 50) +
               1,
             large: Math.random() < 0.5,
@@ -109,6 +109,33 @@ module.exports = async function () {
               },
               {
                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                color: randomColor(),
+                name: randomName(),
+                imgs: [img3],
+              },
+              {
+                textC:
+                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                comments: [
+                  {
+                    textC:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    color: randomColor(),
+                    name: randomName(),
+                  },
+                  {
+                    textC:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    color: randomColor(),
+                    name: randomName(),
+                  },
+                  {
+                    textC:
+                      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+                    color: randomColor(),
+                    name: randomName(),
+                  },
+                ],
                 color: randomColor(),
                 name: randomName(),
                 imgs: [img3],
