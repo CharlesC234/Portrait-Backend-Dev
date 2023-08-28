@@ -64,7 +64,7 @@ const encodeImageToBlurhash = async (path) =>
 async function getImg(path) {
   const Newpath = "./images/100-100-color/" + path + ".jpg";
   return {
-    uri: "http://10.201.84.63:8080/images/" + path,
+    uri: "http://192.168.1.72:8080/images/" + path,
     blur: await encodeImageToBlurhash(Newpath).then((hash) => {
       console.log(hash);
       return hash;
@@ -74,6 +74,10 @@ async function getImg(path) {
 
 module.exports = async function () {
   const Data = [];
+
+  function getRand() {
+    return Math.floor(Math.random() * 50) + 1;
+  }
 
   for (let i = 0; i < 9; i++) {
     var img1;
@@ -89,11 +93,8 @@ module.exports = async function () {
           Data.push({
             name: randomName(),
             username: randomName(),
-            pfp:
-              "http://10.201.84.63:8080/images/" +
-              Math.floor(Math.random() * 50) +
-              1,
-            large: Math.random() < 0.5,
+            pfp: "http://192.168.1.72:8080/images/" + getRand(),
+            large: Math.random() < 0.8,
             color: randomColor(),
             posts: [
               {

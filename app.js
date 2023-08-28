@@ -217,6 +217,9 @@ app.post("/SendData", function (req, res) {
       Pic6P: pic6,
     },
     PrivacyP: req.body.privacy,
+    ViewsP: 0,
+    PostsP: 0,
+    FollowersP: 0,
   });
   portrait
     .save()
